@@ -6,7 +6,7 @@
                :default-active="$route.path"
                router>
         <el-submenu v-for="(item, index) in menu.items"
-                    :index="index + 1"
+                    :index="`menu-item-${index}`"
                     :key="`menu-item-${index}`">
           <template slot="title">{{item.title}}</template>
           <el-menu-item v-for="(subItem, subIndex) in item.items"
@@ -20,10 +20,10 @@
     </el-aside>
     <el-container>
       <el-header>
-        DogFun - 后台管理界面
+        <h3> DogFun - 后台管理界面</h3>
       </el-header>
       <el-main>
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
       </el-main>
     </el-container>
   </el-container>
@@ -41,15 +41,15 @@ export default class Main extends Vue {
         title: "内容管理",
         items: [
           { title: "首页", path: "/" },
-          { title: "视频管理", path: "videos/list" },
-          { title: "分集管理", path: "videos/list" }
+          { title: "视频管理", path: "/videos/list" },
+          { title: "分集管理", path: "/videos/list" }
         ]
       },
       {
         title: "运营管理",
         items: [
           { title: "首页", path: "/" },
-          { title: "用户管理", path: "users/list" }
+          { title: "用户管理", path: "/users/list" }
         ]
       }
     ]
