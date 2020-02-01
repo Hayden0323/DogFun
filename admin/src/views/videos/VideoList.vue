@@ -9,6 +9,14 @@
                        :key="name"
                        :label="field.label">
       </el-table-column>
+      <el-table-column label="操作"
+                       :width="200">
+        <template v-slot="{row}">
+          <el-button type="success"
+                     size="small"
+                     @click="$router.push(`/videos/edit/${row._id}`)">编辑</el-button>
+        </template>
+      </el-table-column>
     </el-table>
 
   </div>

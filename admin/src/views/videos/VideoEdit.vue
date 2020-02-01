@@ -2,7 +2,8 @@
   <div>
     <h3>{{isNew?'创建':'编辑'}}视频</h3>
     <ele-form :form-data='data'
-              :form-desc='fields'>
+              :form-desc='fields'
+              :request-fn='submit'>
     </ele-form>
   </div>
 </template>
@@ -24,12 +25,21 @@ export default class VideoList extends Vue {
   }
 
   async fetch() {
-    const res = await this.$http.get("videos");
+    const res = await this.$http.get(`videos/${this.id}`);
     this.data = res.data;
   }
 
+  async submit(data) {
+    const url = this.isNew ? "videos" : `videos/${this.id}`;
+    const method = this.isNew ? "post" : "put";
+    await this.$http[method](url, data);
+    this.$message.success("保存成功");
+    this.data = {};
+    this.$router.go(-1);
+  }
+
   created() {
-    // this.fetch();
+    !this.isNew && this.fetch();
   }
 }
 </script>
