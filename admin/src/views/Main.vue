@@ -42,15 +42,12 @@ export default class Main extends Vue {
         items: [
           { title: "首页", path: "/" },
           { title: "视频管理", path: "/videos/list" },
-          { title: "分集管理", path: "/videos/list" }
+          { title: "分集管理", path: "/episodes/list" }
         ]
       },
       {
         title: "运营管理",
-        items: [
-          { title: "首页", path: "/" },
-          { title: "用户管理", path: "/users/list" }
-        ]
+        items: [{ title: "用户管理", path: "/users/list" }]
       }
     ]
   };
