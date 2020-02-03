@@ -19,8 +19,15 @@ export class VideosController {
   option() {
     return {
       title: '视频管理',
+      searchMenuSpan: 3,
       column: [
-        { prop: 'name', label: '视频名称' },
+        {
+          prop: 'name',
+          label: '视频名称',
+          sortable: true,
+          search: true,
+          regex: true
+        },
         { prop: 'cover', label: '视频封面图' }
       ]
     }
