@@ -1,4 +1,5 @@
-import { prop, modelOptions } from '@typegoose/typegoose'
+import { prop, modelOptions, Ref } from '@typegoose/typegoose'
+import { Video } from './video.model'
 
 @modelOptions({
   schemaOptions: {
@@ -11,4 +12,7 @@ export class Episode {
 
   @prop()
   file: string
+
+  @prop({ ref: 'Video' })
+  video: Ref<Video>
 }
