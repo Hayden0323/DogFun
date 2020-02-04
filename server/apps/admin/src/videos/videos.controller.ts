@@ -24,11 +24,21 @@ export class VideosController {
         {
           prop: 'name',
           label: '视频名称',
+          span: 24,
           sortable: true,
           search: true,
-          regex: true
+          regex: true,
+          row: true
         },
-        { prop: 'cover', label: '视频封面图' }
+        {
+          prop: 'cover',
+          label: '视频封面图',
+          type: 'upload',
+          listType: 'picture-img',
+          width: 120,
+          row: true,
+          action: '/upload'
+        }
       ]
     }
   }

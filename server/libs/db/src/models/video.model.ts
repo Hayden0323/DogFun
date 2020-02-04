@@ -1,6 +1,5 @@
 import { prop, modelOptions, arrayProp, Ref } from '@typegoose/typegoose'
 import { ApiProperty } from '@nestjs/swagger'
-import { Episode } from './episode.model'
 
 @modelOptions({
   schemaOptions: {
@@ -15,7 +14,4 @@ export class Video {
   @ApiProperty({ description: '封面图' })
   @prop()
   cover: string
-
-  @arrayProp({ itemsRef: 'Episode' })
-  episodes: Ref<Episode>[]
 }
