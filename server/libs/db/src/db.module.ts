@@ -21,12 +21,6 @@ const models = TypegooseModule.forFeature([User, Video, Episode])
         }
       }
     }),
-    // TypegooseModule.forRoot(process.env.DB, {
-    //   useNewUrlParser: true,
-    //   useUnifiedTopology: true,
-    //   useCreateIndex: true,
-    //   useFindAndModify: false
-    // }),
     models
   ],
   providers: [DbService],
