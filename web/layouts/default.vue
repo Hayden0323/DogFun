@@ -30,11 +30,17 @@
           </v-list-item>
         </v-list>
         <v-list-item class="mt-4"
-                     link>
+                     @click="isShowLoginForm = true">
           <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
+            <v-icon color="grey darken-1">mdi-lock</v-icon>
           </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Browse Channels</v-list-item-title>
+          <v-list-item-title class="grey--text text--darken-1">
+            {{
+            $store.state.auth.user.username
+              ?$store.state.auth.user.username
+              :'登录'
+            }}
+          </v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-action>
@@ -69,6 +75,41 @@
     <v-content>
       <nuxt-child></nuxt-child>
     </v-content>
+
+    <v-dialog v-model="isShowLoginForm"
+              persistent
+              max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">登录</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field label="用户名*"
+                              v-model="loginModel.username"
+                              required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="密码*"
+                              type="password"
+                              v-model="loginModel.password"
+                              required></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1"
+                 text
+                 @click="isShowLoginForm = false">关闭</v-btn>
+          <v-btn color="blue darken-1"
+                 @click="login">登录</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -78,6 +119,8 @@ export default {
     source: String,
   },
   data: () => ({
+    isShowLoginForm: false,
+    loginModel: {},
     drawer: null,
     items: [
       { icon: 'home', text: '首页', link: '/' },
@@ -92,6 +135,15 @@ export default {
       { picture: 78, text: 'MKBHD' },
     ],
   }),
+  methods: {
+    async login () {
+      await this.$auth.loginWith('local', {
+        data: this.loginModel
+      })
+      console.log('登录成功')
+      this.isShowLoginForm = false
+    }
+  },
   created () {
     this.$vuetify.theme.dark = true
   },
