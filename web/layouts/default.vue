@@ -34,12 +34,13 @@
           <v-list-item-action>
             <v-icon color="grey darken-1">mdi-lock</v-icon>
           </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">
-            {{
-            $store.state.auth.user.username
-              ?$store.state.auth.user.username
-              :'登录'
-            }}
+          <v-list-item-title class="grey--text text--darken-1"
+                             v-if="$store.state.auth.user">
+            欢迎您：{{$store.state.auth.user.username}}
+          </v-list-item-title>
+          <v-list-item-title class="grey--text text--darken-1"
+                             v-else>
+            登录
           </v-list-item-title>
         </v-list-item>
         <v-list-item link>
