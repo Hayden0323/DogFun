@@ -6,8 +6,8 @@ export type UserDocument = DocumentType<User>
 
 @modelOptions({
   schemaOptions: {
-    timestamps: true
-  }
+    timestamps: true,
+  },
 })
 export class User {
   @ApiProperty({ description: '用户名', example: 'user1' })
@@ -22,7 +22,7 @@ export class User {
     },
     set(val) {
       return val ? hashSync(val) : val
-    }
+    },
   })
   password: string
 }
