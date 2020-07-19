@@ -4,8 +4,9 @@ import { TypegooseModule } from 'nestjs-typegoose'
 import { User } from './models/user.model'
 import { Video } from './models/video.model'
 import { Episode } from './models/episode.model'
+import { Action } from './models/action.model'
 
-const models = TypegooseModule.forFeature([User, Video, Episode])
+const models = TypegooseModule.forFeature([User, Video, Episode, Action])
 
 @Global()
 @Module({
@@ -17,13 +18,13 @@ const models = TypegooseModule.forFeature([User, Video, Episode])
           useNewUrlParser: true,
           useUnifiedTopology: true,
           useCreateIndex: true,
-          useFindAndModify: false
+          useFindAndModify: false,
         }
-      }
+      },
     }),
-    models
+    models,
   ],
   providers: [DbService],
-  exports: [DbService, models]
+  exports: [DbService, models],
 })
 export class DbModule {}

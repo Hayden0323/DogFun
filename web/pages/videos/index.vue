@@ -5,11 +5,12 @@
       <v-col v-for="item in videos"
              :key="item._id"
              md="4">
-        <v-card :to="`/videos/${item._id}`"
-                class="mx-auto"
+        <v-card class="mx-auto"
                 max-width="344">
-          <v-img :src="item.cover"
-                 height="200px"></v-img>
+          <router-link :to="`/videos/${item._id}`">
+            <v-img :src="item.cover"
+                   height="200px"></v-img>
+          </router-link>
 
           <v-card-title>
             {{item.name}}
@@ -20,7 +21,8 @@
           </v-card-subtitle>
 
           <v-card-actions>
-            <v-btn text>Share</v-btn>
+            <like-btn type="Video"
+                      :object="item._id"></like-btn>
 
             <v-btn color="purple"
                    text>
@@ -37,7 +39,9 @@
 </template>
 
 <script>
+import LikeBtn from '../../components/shared/LikeBtn'
 export default {
+  components: { LikeBtn },
   async asyncData ({ $axios }) {
     const data = await $axios.$get('videos')
     return {

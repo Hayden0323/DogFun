@@ -5,19 +5,19 @@ import { Episode } from './episode.model'
 
 @modelOptions({
   schemaOptions: {
-    timestamps: true
-  }
+    timestamps: true,
+  },
 })
 export class Action {
   @prop({ ref: 'User' })
   user: Ref<User>
 
   @prop({ enum: ['Video', 'Episode'] })
-  type: String
+  type: string
 
   @prop({ refPath: 'type' })
   object: Ref<Video | Episode>
 
   @prop({ enum: ['like', 'upVote'] })
-  name: String
+  name: string
 }

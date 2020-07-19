@@ -1,7 +1,8 @@
 <template>
   <div class="pa-3">
     <h3>{{video.name}}</h3>
-
+    <like-btn type="Video"
+              :object="video._id"></like-btn>
     <v-select v-model="currentIndex"
               :items="video.episodes.map((v, i) => ({ text: v.name, value: i }))"></v-select>
     <video width="100%"
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import LikeBtn from '../../components/shared/LikeBtn'
 export default {
   async asyncData ({ params, $axios }) {
     const { id } = params
@@ -23,6 +25,9 @@ export default {
       id,
       video
     }
+  },
+  components: {
+    LikeBtn
   },
   data () {
     return {
