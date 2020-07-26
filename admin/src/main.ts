@@ -11,12 +11,12 @@ Vue.config.productionTip = false
 // Vue.use(EleForm)
 
 const http = axios.create({
-  baseURL: process.env.VUE_APP_API_URL
+  baseURL: process.env.VUE_APP_API_URL,
 })
 Vue.prototype.$httpajax = http
 Vue.prototype.$http = http
 
 new Vue({
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app')
